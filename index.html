@@ -112,6 +112,8 @@ var bm3s = 10;
 var bm4s = 20;
 var wa = 1;
  var w;
+   var mhp = 50;
+   var ms = 5;
  function lode() {
   m1cx = Math.floor(Math.random() * 1000);
      m1cy = Math.floor(Math.random() * 500);
@@ -952,7 +954,8 @@ document.getElementById("a").style.fill= "blue";
   
 }
    function ele() {
-
+if(hp < mhp) {
+  if(s < ms){
     if(cy < m1cyy && cy > m1cyx) {
 
          
@@ -1009,6 +1012,8 @@ document.getElementById("a").style.fill= "blue";
   500
 );
    }
+  }
+}
 }
 window.addEventListener('keydown', function(e) {
    if (e.key == 'a' || e.key == 'ArrowLeft') {
