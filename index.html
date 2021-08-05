@@ -20,19 +20,23 @@ position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
     }
+    #ad {
+      border: 1px black solid;
+      width: 10px;
+    }
   </style>
 <p id="gc"><span>heal:
 <button onclick="ele()" ></button>
 atack:
 <button onclick="batil()" ></button>
 up:
- <button onmousedown="b(-1,'a')" onmouseup="c()"></button>
+ <button onclick="ba(-1,'a')" onmousedown="b(-15,'a')" onmouseup="c()"></button>
 down:
- <button  onmousedown="b(1,'a')" onmouseup="c()"></button>
+ <button  onmousedown="b(1,'a')" onmouseup="c()" onclick="ba(15,'a')"></button>
  left:
-<button id="l"  onmousedown="a(-1,'a')" onmouseup="c()"></button>
+<button id="l"  onmousedown="a(-1,'a')" onmouseup="c()" onclick="aa(-15,'a')"></button>
 right:
- <button  onmousedown="a(1,'a')" onmouseup="c()"></button>
+ <button  onmousedown="a(1,'a')" onmouseup="c()" onclick="aa(15,'a')"></button>
  save:
   <button  onclick="save()"></button>
  lode:
@@ -106,14 +110,22 @@ var wa = 1;
      m3cy = Math.floor(Math.random() * 500); 
       m4cx = Math.floor(Math.random() * 1000);
      m4cy = Math.floor(Math.random() * 500);
-     m1cyy = m1cy + 10
-     m1cyx = m1cy - 10
-      m2cyy = m2cy + 10
-     m2cyx = m2cy - 10
-       m3cyy = m3cy + 10
-     m3cyx = m3cy - 10
-     m4cyy = m4cy + 10
-     m4cyx = m4cy - 10
+     m1cyy = m1cy + 15
+     m1cyx = m1cy - 15
+      m2cyy = m2cy + 15
+     m2cyx = m2cy - 15
+       m3cyy = m3cy + 15
+     m3cyx = m3cy - 15
+     m4cyy = m4cy + 15
+     m4cyx = m4cy - 15
+      m1cxy = m1cx + 15
+     m1cxx = m1cx - 15
+      m2cxy = m2cx + 15
+     m2cxx = m2cx - 15
+       m3cxy = m3cx + 15
+     m3cxx = m3cx - 15
+     m4cxy = m4cx + 15
+     m4cxx = m4cx - 15
      document.getElementById("aa").setAttribute("cx", m1cx);
     document.getElementById("aa").setAttribute("cy", m1cy);
        document.getElementById("aaa").setAttribute("cx", m2cx);
@@ -243,7 +255,14 @@ localStorage.ca = atc
    }
     
  
-
+function aa(px,id) {
+   cx += px;
+    document.getElementById(id).setAttribute("cx", cx);
+}
+function ba(px,id) {
+cy += px;
+    document.getElementById(id).setAttribute("cy", cy);
+}
    function a(px,id)
    {
        w = setInterval(function() {
@@ -268,18 +287,26 @@ localStorage.ca = atc
   }, 10)
    
    }
-
-   var m1cyy = m1cy + 10
-    var m1cyx = m1cy - 10
-     var m2cyy = m2cy + 10
-    var m2cyx = m2cy - 10
-      var m3cyy = m3cy + 10
-    var m3cyx = m3cy - 10
-    var m4cyy = m4cy + 10
-    var m4cyx = m4cy - 10
+var m1cyy = m1cy + 15
+var     m1cyx = m1cy - 15
+var      m2cyy = m2cy + 15
+var     m2cyx = m2cy - 15
+var       m3cyy = m3cy + 15
+var     m3cyx = m3cy - 15
+var     m4cyy = m4cy + 15
+var     m4cyx = m4cy - 15
+   var   m1cxy = m1cx + 15
+   var  m1cxx = m1cx - 15
+var      m2cxy = m2cx + 15
+var     m2cxx = m2cx - 15
+var       m3cxy = m3cx + 15
+var     m3cxx = m3cx - 15
+var     m4cxy = m4cx + 15
+var     m4cxx = m4cx - 15
    function batil() {
 var a2 = Math.floor(Math.random() * 3);
   if(cy < m1cyy && cy > m1cyx) {
+    if(cx > m1cxx && cx < m1cxy) {
     if(hp <= 0){
   alert("yu died refresh page");
   document.getElementById("a").style.fill= "blue";
@@ -309,6 +336,7 @@ s -= .5;
  }else if(hp <= 0){
   alert("yu died refresh page");
  }
+}
     }else if(cy < m2cyy && cy > m2cyx) {
    if(hp == 0){
     document.getElementById("a").style.fill= "blue";
@@ -355,14 +383,22 @@ document.getElementById("a").style.fill= "blue";
     document.getElementById("aaaa").setAttribute("cy", m3cy);
     document.getElementById("aaaaa").setAttribute("cx", m4cx);
     document.getElementById("aaaaa").setAttribute("cy", m4cy);
-    m1cyy = m1cy + 10
-     m1cyx = m1cy - 10
-      m2cyy = m2cy + 10
-     m2cyx = m2cy - 10
-       m3cyy = m3cy + 10
-     m3cyx = m3cy - 10
-     m4cyy = m4cy + 10
-     m4cyx = m4cy - 10
+m1cyy = m1cy + 15
+     m1cyx = m1cy - 15
+      m2cyy = m2cy + 15
+     m2cyx = m2cy - 15
+       m3cyy = m3cy + 15
+     m3cyx = m3cy - 15
+     m4cyy = m4cy + 15
+     m4cyx = m4cy - 15
+      m1cxy = m1cx + 15
+     m1cxx = m1cx - 15
+      m2cxy = m2cx + 15
+     m2cxx = m2cx - 15
+       m3cxy = m3cx + 15
+     m3cxx = m3cx - 15
+     m4cxy = m4cx + 15
+     m4cxx = m4cx - 15
     bm1hp += 200;
     bm2hp += 200;
     bm3hp += 200;
@@ -399,6 +435,7 @@ document.getElementById("a").style.fill= "blue";
  }else if(hp <= 0){
   alert("yu died refresh page");
  }
+
  }else if(cy < m3cyy && cy > m3cyx) {
 if(hp == 0){
     window.setInterval(function () {
@@ -443,14 +480,22 @@ document.getElementById("a").style.fill= "blue";
     document.getElementById("aaaa").setAttribute("cy", m3cy);
     document.getElementById("aaaaa").setAttribute("cx", m4cx);
     document.getElementById("aaaaa").setAttribute("cy", m4cy);
-    m1cyy = m1cy + 10
-     m1cyx = m1cy - 10
-      m2cyy = m2cy + 10
-     m2cyx = m2cy - 10
-       m3cyy = m3cy + 10
-     m3cyx = m3cy - 10
-     m4cyy = m4cy + 10
-     m4cyx = m4cy - 10
+m1cyy = m1cy + 15
+     m1cyx = m1cy - 15
+      m2cyy = m2cy + 15
+     m2cyx = m2cy - 15
+       m3cyy = m3cy + 15
+     m3cyx = m3cy - 15
+     m4cyy = m4cy + 15
+     m4cyx = m4cy - 15
+      m1cxy = m1cx + 15
+     m1cxx = m1cx - 15
+      m2cxy = m2cx + 15
+     m2cxx = m2cx - 15
+       m3cxy = m3cx + 15
+     m3cxx = m3cx - 15
+     m4cxy = m4cx + 15
+     m4cxx = m4cx - 15
     bm1hp += 200;
     bm2hp += 200;
     bm3hp += 200;
@@ -529,14 +574,22 @@ document.getElementById("a").style.fill= "blue";
      m3cy = Math.floor(Math.random() * 500); 
       m4cx = Math.floor(Math.random() * 1000);
      m4cy = Math.floor(Math.random() * 500);
-     m1cyy = m1cy + 10
-     m1cyx = m1cy - 10
-      m2cyy = m2cy + 10
-     m2cyx = m2cy - 10
-       m3cyy = m3cy + 10
-     m3cyx = m3cy - 10
-     m4cyy = m4cy + 10
-     m4cyx = m4cy - 10
+     m1cyy = m1cy + 15
+     m1cyx = m1cy - 15
+      m2cyy = m2cy + 15
+     m2cyx = m2cy - 15
+       m3cyy = m3cy + 15
+     m3cyx = m3cy - 15
+     m4cyy = m4cy + 15
+     m4cyx = m4cy - 15
+      m1cxy = m1cx + 15
+     m1cxx = m1cx - 15
+      m2cxy = m2cx + 15
+     m2cxx = m2cx - 15
+       m3cxy = m3cx + 15
+     m3cxx = m3cx - 15
+     m4cxy = m4cx + 15
+     m4cxx = m4cx - 15
      document.getElementById("aa").setAttribute("cx", m1cx);
     document.getElementById("aa").setAttribute("cy", m1cy);
        document.getElementById("aaa").setAttribute("cx", m2cx);
