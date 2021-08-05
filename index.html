@@ -3,6 +3,7 @@
 <head>
   <title>rpg</title>
   <meta charset="utf-8">
+
 </head>
 <body>
   <style type="text/css">
@@ -30,7 +31,7 @@ position: absolute;
 atack:
 <button onclick="batil()" ></button>
 up:
- <button onclick="ba(-1,'a')" onmousedown="b(-15,'a')" onmouseup="c()"></button>
+ <button onclick="ba(-15,'a')" onmousedown="b(-1,'a')" onmouseup="c()"></button>
 down:
  <button  onmousedown="b(1,'a')" onmouseup="c()" onclick="ba(15,'a')"></button>
  left:
@@ -52,6 +53,8 @@ right:
 <circle id="aaa" cx="0" cy="0" r="40" stroke="black" stroke-width="10" fill="orange" />
 <circle id="aaaa" cx="0" cy="0" r="40" stroke="black" stroke-width="10" fill="orange" />
 <circle id="aaaaa" cx="0" cy="0" r="40" stroke="yellow" stroke-width="20" fill="red" />
+<!-- <circle id="aaaaaa" cx="0" cy="0" r="40" stroke="red" stroke-width="30" fill="yellow" />
+<circle id="aaaaaaa" cx="0" cy="0" r="40" stroke="red" stroke-width="30" fill="yellow" /> -->
 <circle id="a" cx="500" cy="250" r="40" stroke="black" stroke-width="5" fill="red" />
 
 
@@ -69,15 +72,20 @@ right:
   var m1hp = 70;
   var m2hp = 100;
   var m3hp = 100;
-   var m4hp = 200;
+var m4hp = 200;
+var m5hp = 300;
+var m6hp = 300;
    var bm1hp = 70;
   var bm2hp = 100;
   var bm3hp = 100;
    var bm4hp = 200;
+      var bm5hp = 300;
+      
 var hes = 0;
   var m1s = 7;
 var m2s = 10;
 var m3s = 10;
+var m3s = 20;
 var bm1s = 7;
 var bm2s = 10;
 var bm3s = 10;
@@ -89,8 +97,11 @@ var cx = 500;
 var atc = 15;
 var s = 5;
 var hp = 50
-
-var mc = 4;
+var m1sat = .5;
+var m2sat = 1;
+var m3sat = 2;
+var m4sat = 3;
+var mc = 6;
 var m4s = 20;
 var m1at = 5;
 var m2at = 10;
@@ -110,6 +121,10 @@ var wa = 1;
      m3cy = Math.floor(Math.random() * 500); 
       m4cx = Math.floor(Math.random() * 1000);
      m4cy = Math.floor(Math.random() * 500);
+            m5cx = Math.floor(Math.random() * 1000);
+     m5cy = Math.floor(Math.random() * 500); 
+      m6cx = Math.floor(Math.random() * 1000);
+     m6cy = Math.floor(Math.random() * 500)
      m1cyy = m1cy + 15
      m1cyx = m1cy - 15
       m2cyy = m2cy + 15
@@ -126,6 +141,10 @@ var wa = 1;
      m3cxx = m3cx - 15
      m4cxy = m4cx + 15
      m4cxx = m4cx - 15
+       m5cxy = m5cx + 15
+     m5cxx = m5cx - 15
+       mc6xy = m6cx + 15
+     m6cxx = m6cx - 15
      document.getElementById("aa").setAttribute("cx", m1cx);
     document.getElementById("aa").setAttribute("cy", m1cy);
        document.getElementById("aaa").setAttribute("cx", m2cx);
@@ -134,6 +153,10 @@ var wa = 1;
     document.getElementById("aaaa").setAttribute("cy", m3cy);
     document.getElementById("aaaaa").setAttribute("cx", m4cx);
     document.getElementById("aaaaa").setAttribute("cy", m4cy);
+        document.getElementById("aaaaaa").setAttribute("cx", m5cx);
+    document.getElementById("aaaaaa").setAttribute("cy", m5cy);
+    document.getElementById("aaaaaaa").setAttribute("cx", m6cx);
+    document.getElementById("aaaaaaa").setAttribute("cy", m6cy);
    m1hp =  parseInt(localStorage.aa);
   
 m2hp =  parseInt(localStorage.ab);
@@ -229,10 +252,40 @@ localStorage.ca = atc
 
 
 }
+var weponName;
+var weponS;
+var wepons;
+function wepon() {
+  if(Math.floor(Math.random() * 3) == 3) {
+
+  switch(Math.floor(Math.random() * 3) + 1) {
+  case 1:
+    weponName = "water";
+    weponS = "10";
+    break;
+  case 2:
+     weponName = "fire";
+    weponS = "20";
+    break;
+  default:
+        weponName = "lava";
+    weponS = "30";
+} 
+var a = prompt("do you want to pick up a " + weponName + "that a slime dropt y/n");
+if(a == "y") {
+  atc -= wepons;
+  wepons = weponS;
+  atc += wepons;
+}
+}
+}
   var m1cx = Math.floor(Math.random() * 1000);
     var m1cy = Math.floor(Math.random() * 500);
       var m2cx = Math.floor(Math.random() * 1000);
-
+            m5cx = Math.floor(Math.random() * 1000);
+     m5cy = Math.floor(Math.random() * 500); 
+      m6cx = Math.floor(Math.random() * 1000);
+     m6cy = Math.floor(Math.random() * 500)
 
     var m2cy = Math.floor(Math.random() * 500);
       var m3cx = Math.floor(Math.random() * 1000);
@@ -240,6 +293,8 @@ localStorage.ca = atc
      var m4cx = Math.floor(Math.random() * 1000);
     var m4cy = Math.floor(Math.random() * 500);
      window.onload = function () {
+
+ wepon()
  var name = prompt('what is your name');
  alert(name + ', ower town is under atack by slimes go fite them thair comming');
 
@@ -251,7 +306,10 @@ localStorage.ca = atc
     document.getElementById("aaaa").setAttribute("cy", m3cy);
     document.getElementById("aaaaa").setAttribute("cx", m4cx);
     document.getElementById("aaaaa").setAttribute("cy", m4cy);
-
+        document.getElementById("aaaaaa").setAttribute("cx", m5cx);
+    document.getElementById("aaaaaa").setAttribute("cy", m5cy);
+    document.getElementById("aaaaaaa").setAttribute("cx", m6cx);
+    document.getElementById("aaaaaaa").setAttribute("cy", m6cy);
    }
     
  
@@ -306,7 +364,6 @@ var     m4cxx = m4cx - 15
    function batil() {
 var a2 = Math.floor(Math.random() * 3);
   if(cy < m1cyy && cy > m1cyx) {
-
     if(hp <= 0){
   alert("yu died refresh page");
   document.getElementById("a").style.fill= "blue";
@@ -317,7 +374,7 @@ var a2 = Math.floor(Math.random() * 3);
     m1hp -= atc;
     m1s -= as;
     hp -= m1at;
-s -= .5;
+s -= m1sat;
  document.getElementById("a").style.fill= "blue";
         setTimeout(function() {
      document.getElementById("a").style.fill= "red";
@@ -333,6 +390,72 @@ s -= .5;
    he += 15;
    hes += 1.5;
    mc -= 1;
+   wepon()
+   wepon()
+   if (mc == 0) {
+
+ m1cx = Math.floor(Math.random() * 1000);
+     m1cy = Math.floor(Math.random() * 500);
+       m2cx = Math.floor(Math.random() * 1000);
+     m2cy = Math.floor(Math.random() * 500);
+       m3cx = Math.floor(Math.random() * 1000);
+     m3cy = Math.floor(Math.random() * 500); 
+      m4cx = Math.floor(Math.random() * 1000);
+     m4cy = Math.floor(Math.random() * 500);
+     m1cyy = m1cy + 15
+     m1cyx = m1cy - 15
+      m2cyy = m2cy + 15
+     m2cyx = m2cy - 15
+       m3cyy = m3cy + 15
+     m3cyx = m3cy - 15
+     m4cyy = m4cy + 15
+     m4cyx = m4cy - 15
+      m1cxy = m1cx + 15
+     m1cxx = m1cx - 15
+      m2cxy = m2cx + 15
+     m2cxx = m2cx - 15
+       m3cxy = m3cx + 15
+     m3cxx = m3cx - 15
+     m4cxy = m4cx + 15
+     m4cxx = m4cx - 15
+     document.getElementById("aa").setAttribute("cx", m1cx);
+    document.getElementById("aa").setAttribute("cy", m1cy);
+       document.getElementById("aaa").setAttribute("cx", m2cx);
+    document.getElementById("aaa").setAttribute("cy", m2cy);
+       document.getElementById("aaaa").setAttribute("cx", m3cx);
+    document.getElementById("aaaa").setAttribute("cy", m3cy);
+    document.getElementById("aaaaa").setAttribute("cx", m4cx);
+    document.getElementById("aaaaa").setAttribute("cy", m4cy);
+    bm1hp += 200;
+    bm2hp += 200;
+    bm3hp += 200;
+    bm4hp += 200;
+    m1hp = bm1hp;
+    m2hp = bm2hp;
+    m3hp = bm3hp;
+    m4hp = bm4hp;
+    mc += 4;
+    m1at += 10;
+    m2at += 10;
+    m3at += 10;
+    bm1s += 20;
+    bm2s += 20;
+    bm3s += 20;
+    bm4s += 20;
+    m1s = bm1s;
+    m2s = bm2s;
+    m3s = bm3s;
+    m4s = bm4s;
+    wa += 1;
+    document.getElementById("aaaaa").style.strokeWidth = bm4s;
+    document.getElementById("aaaa").style.strokeWidth = bm3s;
+    document.getElementById("aaa").style.strokeWidth = bm2s;
+    document.getElementById("aa").style.strokeWidth = bm1s;
+  document.getElementById("aa").style.stroke = "yellow";
+    document.getElementById("aaaa").style.stroke = "yellow";
+    document.getElementById("aaa").style.stroke = "yellow";
+    document.getElementById("aaaaa").style.stroke = "red";
+}
  }else if(hp <= 0){
   alert("yu died refresh page");
  }
@@ -348,7 +471,7 @@ s -= .5;
     m2hp -= atc;
     m2s -= as;
     hp -= m2at;
-s -= 1;
+s -= m2sat;
       document.getElementById("a").style.strokeWidth = s;
      document.getElementById("aaa").style.strokeWidth = m2s;
     if(m2hp <= 0){
@@ -358,6 +481,7 @@ s -= 1;
    he += 20;
    hes += 2;
    mc -= 1;
+   wepon()
 document.getElementById("a").style.fill= "blue";
         setTimeout(function() {
      document.getElementById("a").style.fill= "red";
@@ -420,6 +544,9 @@ m1cyy = m1cy + 15
     m3s = bm3s;
     m4s = bm4s;
     wa += 1;
+    m1sat += 1;
+     m2sat += 1;
+      m3sat += 1;
     document.getElementById("aaaaa").style.strokeWidth = bm4s;
     document.getElementById("aaaa").style.strokeWidth = bm3s;
     document.getElementById("aaa").style.strokeWidth = bm2s;
@@ -445,7 +572,7 @@ if(hp == 0){
     m3hp -= atc;
     m3s -= as;
     hp -= m2at;
-s -= 1;
+s -= m2sat;
 document.getElementById("a").style.fill= "blue";
         setTimeout(function() {
      document.getElementById("a").style.fill= "red";
@@ -461,7 +588,7 @@ document.getElementById("a").style.fill= "blue";
    he += 20;
    hes += 2;
    mc -= 1;
-
+wepon()
    if (mc == 0) {
    
  m1cx = Math.floor(Math.random() * 1000);
@@ -548,7 +675,7 @@ if(hp == 0){
     m4hp -= atc;
     m4s -= as;
     hp -= m3at;
-bs -= 2;
+s -= m3sat;
 document.getElementById("a").style.fill= "blue";
         setTimeout(function() {
      document.getElementById("a").style.fill= "red";
@@ -564,6 +691,195 @@ document.getElementById("a").style.fill= "blue";
    he += 30;
    hes += 2;
    mc -= 1;
+   wepon()
+   if (mc == 0) {
+
+ m1cx = Math.floor(Math.random() * 1000);
+     m1cy = Math.floor(Math.random() * 500);
+       m2cx = Math.floor(Math.random() * 1000);
+     m2cy = Math.floor(Math.random() * 500);
+       m3cx = Math.floor(Math.random() * 1000);
+     m3cy = Math.floor(Math.random() * 500); 
+      m4cx = Math.floor(Math.random() * 1000);
+     m4cy = Math.floor(Math.random() * 500);
+     m1cyy = m1cy + 15
+     m1cyx = m1cy - 15
+      m2cyy = m2cy + 15
+     m2cyx = m2cy - 15
+       m3cyy = m3cy + 15
+     m3cyx = m3cy - 15
+     m4cyy = m4cy + 15
+     m4cyx = m4cy - 15
+      m1cxy = m1cx + 15
+     m1cxx = m1cx - 15
+      m2cxy = m2cx + 15
+     m2cxx = m2cx - 15
+       m3cxy = m3cx + 15
+     m3cxx = m3cx - 15
+     m4cxy = m4cx + 15
+     m4cxx = m4cx - 15
+     document.getElementById("aa").setAttribute("cx", m1cx);
+    document.getElementById("aa").setAttribute("cy", m1cy);
+       document.getElementById("aaa").setAttribute("cx", m2cx);
+    document.getElementById("aaa").setAttribute("cy", m2cy);
+       document.getElementById("aaaa").setAttribute("cx", m3cx);
+    document.getElementById("aaaa").setAttribute("cy", m3cy);
+    document.getElementById("aaaaa").setAttribute("cx", m4cx);
+    document.getElementById("aaaaa").setAttribute("cy", m4cy);
+    bm1hp += 200;
+    bm2hp += 200;
+    bm3hp += 200;
+    bm4hp += 200;
+    m1hp = bm1hp;
+    m2hp = bm2hp;
+    m3hp = bm3hp;
+    m4hp = bm4hp;
+    mc += 4;
+    m1at += 10;
+    m2at += 10;
+    m3at += 10;
+    bm1s += 20;
+    bm2s += 20;
+    bm3s += 20;
+    bm4s += 20;
+    m1s = bm1s;
+    m2s = bm2s;
+    m3s = bm3s;
+    m4s = bm4s;
+    wa += 1;
+    document.getElementById("aaaaa").style.strokeWidth = bm4s;
+    document.getElementById("aaaa").style.strokeWidth = bm3s;
+    document.getElementById("aaa").style.strokeWidth = bm2s;
+    document.getElementById("aa").style.strokeWidth = bm1s;
+  document.getElementById("aa").style.stroke = "yellow";
+    document.getElementById("aaaa").style.stroke = "yellow";
+    document.getElementById("aaa").style.stroke = "yellow";
+    document.getElementById("aaaaa").style.stroke = "red";
+
+}
+ }else if(hp <= 0){
+  alert("yu died refresh page");
+ }
+ }else if(cy < m5cyy && cy > m5cyx) {
+if(hp == 0){
+    window.setInterval(function () {
+  alert("you died refresh page");
+ },7000);
+ }
+    m5hp -= atc;
+    m5s -= as;
+    hp -= m4at;
+s -= m4sat;
+document.getElementById("a").style.fill= "blue";
+        setTimeout(function() {
+     document.getElementById("a").style.fill= "red";
+  },
+  500
+);
+    document.getElementById("a").style.strokeWidth = s;
+     document.getElementById("aaaaaa").style.strokeWidth = m5s;
+    if(m4hp <= 0){
+   document.getElementById("aaaaaa").setAttribute("cx", -100);
+   atc + 40;
+   as += 4;
+   he += 30;
+   hes += 3;
+   mc -= 1;
+   wepon()
+   if (mc == 0) {
+
+ m1cx = Math.floor(Math.random() * 1000);
+     m1cy = Math.floor(Math.random() * 500);
+       m2cx = Math.floor(Math.random() * 1000);
+     m2cy = Math.floor(Math.random() * 500);
+       m3cx = Math.floor(Math.random() * 1000);
+     m3cy = Math.floor(Math.random() * 500); 
+      m4cx = Math.floor(Math.random() * 1000);
+     m4cy = Math.floor(Math.random() * 500);
+     m1cyy = m1cy + 15
+     m1cyx = m1cy - 15
+      m2cyy = m2cy + 15
+     m2cyx = m2cy - 15
+       m3cyy = m3cy + 15
+     m3cyx = m3cy - 15
+     m4cyy = m4cy + 15
+     m4cyx = m4cy - 15
+      m1cxy = m1cx + 15
+     m1cxx = m1cx - 15
+      m2cxy = m2cx + 15
+     m2cxx = m2cx - 15
+       m3cxy = m3cx + 15
+     m3cxx = m3cx - 15
+     m4cxy = m4cx + 15
+     m4cxx = m4cx - 15
+     document.getElementById("aa").setAttribute("cx", m1cx);
+    document.getElementById("aa").setAttribute("cy", m1cy);
+       document.getElementById("aaa").setAttribute("cx", m2cx);
+    document.getElementById("aaa").setAttribute("cy", m2cy);
+       document.getElementById("aaaa").setAttribute("cx", m3cx);
+    document.getElementById("aaaa").setAttribute("cy", m3cy);
+    document.getElementById("aaaaa").setAttribute("cx", m4cx);
+    document.getElementById("aaaaa").setAttribute("cy", m4cy);
+    bm1hp += 200;
+    bm2hp += 200;
+    bm3hp += 200;
+    bm4hp += 200;
+    m1hp = bm1hp;
+    m2hp = bm2hp;
+    m3hp = bm3hp;
+    m4hp = bm4hp;
+    mc += 4;
+    m1at += 10;
+    m2at += 10;
+    m3at += 10;
+    bm1s += 20;
+    bm2s += 20;
+    bm3s += 20;
+    bm4s += 20;
+    m1s = bm1s;
+    m2s = bm2s;
+    m3s = bm3s;
+    m4s = bm4s;
+    wa += 1;
+    document.getElementById("aaaaa").style.strokeWidth = bm4s;
+    document.getElementById("aaaa").style.strokeWidth = bm3s;
+    document.getElementById("aaa").style.strokeWidth = bm2s;
+    document.getElementById("aa").style.strokeWidth = bm1s;
+  document.getElementById("aa").style.stroke = "yellow";
+    document.getElementById("aaaa").style.stroke = "yellow";
+    document.getElementById("aaa").style.stroke = "yellow";
+    document.getElementById("aaaaa").style.stroke = "red";
+
+}
+ }else if(hp <= 0){
+  alert("yu died refresh page");
+ }
+ }else if(cy < m6cyy && cy > m6cyx) {
+if(hp == 0){
+    window.setInterval(function () {
+  alert("you died refresh page");
+ },7000);
+ }
+    m6hp -= atc;
+    m6s -= as;
+    hp -= m6at;
+s -= m6sat;
+document.getElementById("a").style.fill= "blue";
+        setTimeout(function() {
+     document.getElementById("a").style.fill= "red";
+  },
+  500
+);
+    document.getElementById("a").style.strokeWidth = s;
+     document.getElementById("aaaaaa").style.strokeWidth = m5s;
+    if(m4hp <= 0){
+   document.getElementById("aaaaaa").setAttribute("cx", -100);
+   atc + 40;
+   as += 4;
+   he += 30;
+   hes += 3;
+   mc -= 1;
+   wepon()
    if (mc == 0) {
 
  m1cx = Math.floor(Math.random() * 1000);
@@ -636,6 +952,7 @@ document.getElementById("a").style.fill= "blue";
   
 }
    function ele() {
+
     if(cy < m1cyy && cy > m1cyx) {
 
          
