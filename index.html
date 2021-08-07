@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,23 +31,26 @@ position: absolute;
     }
   </style>
   <p>hp <span id="hp"></span>/<span id="mhp"></span></p>
-<p id="gc"><span>heal:
-<button onclick="ele()" ></button>
-atack:
-<button onclick="batil()" ></button>
-up:
- <button onclick="ba(-15,'a')" onmousedown="b(-1,'a')" onmouseup="c()"></button>
-down:
- <button  onmousedown="b(1,'a')" onmouseup="c()" onclick="ba(15,'a')"></button>
- left:
-<button id="l"  onmousedown="a(-1,'a')" onmouseup="c()" onclick="aa(-15,'a')"></button>
-right:
- <button  onmousedown="a(1,'a')" onmouseup="c()" onclick="aa(15,'a')"></button>
- save:
-  <button  onclick="save()"></button>
- lode:
-  <button  onclick="lode()"></button></span>
-</p><br>
+<div id="gc">
+
+
+<button onclick="ele()" >heal</button>
+<button onclick="firebatil()" >fire spell</button>
+<button onclick="waterbatil()" >water spell</button>
+
+ <button onclick="ba(-15,'a')" onmousedown="b(-1,'a')" onmouseup="c()">up</button>
+
+ <button  onmousedown="b(1,'a')" onmouseup="c()" onclick="ba(15,'a')">down</button>
+
+<button id="l"  onmousedown="a(-1,'a')" onmouseup="c()" onclick="aa(-15,'a')">left</button>
+
+ <button  onmousedown="a(1,'a')" onmouseup="c()" onclick="aa(15,'a')">right</button>
+
+  <button  onclick="save()">save</button>
+
+  <button  onclick="lode()">lode</button>
+<br>
+</div>
 <svg height="500" width="1000" id="game">
 
 <rect width="100" height="50" x="0" y="450" fill="yellow" />
@@ -61,7 +66,7 @@ right:
 <circle id="a" cx="500" cy="250" r="40" stroke="black" stroke-width="5" fill="red" />
 
 
-</svg> 
+</svg>
 
 
  <script type="text/javascript">
@@ -70,7 +75,7 @@ right:
 
 
 
-
+var manna = 10;
 
   var m1hp = 70;
   var m2hp = 100;
@@ -115,6 +120,8 @@ var bm3s = 10;
 var bm4s = 20;
 var wa = 1;
  var w;
+ var wh = 1;
+ var fd = 10;
    var mhp = 50;
    var ms = 5;
  function lode() {
@@ -123,11 +130,11 @@ var wa = 1;
        m2cx = Math.floor(Math.random() * 1000);
      m2cy = Math.floor(Math.random() * 500);
        m3cx = Math.floor(Math.random() * 1000);
-     m3cy = Math.floor(Math.random() * 500); 
+     m3cy = Math.floor(Math.random() * 500);
       m4cx = Math.floor(Math.random() * 1000);
      m4cy = Math.floor(Math.random() * 500);
             m5cx = Math.floor(Math.random() * 1000);
-     m5cy = Math.floor(Math.random() * 500); 
+     m5cy = Math.floor(Math.random() * 500);
       m6cx = Math.floor(Math.random() * 1000);
      m6cy = Math.floor(Math.random() * 500)
      m1cyy = m1cy + 15
@@ -217,6 +224,7 @@ bm2hp =  parseInt(localStorage.b);
  }
 function save() {
 
+
   localStorage.aa = m1hp
     localStorage.ab = m2hp;
     localStorage.ac = m3hp;
@@ -275,7 +283,7 @@ function wepon() {
   default:
         weponName = "lava";
     weponS = "30";
-} 
+}
 var a = prompt("do you want to pick up a " + weponName + "that a slime dropt y/n");
 if(a == "y") {
   atc -= wepons;
@@ -288,19 +296,19 @@ if(a == "y") {
     var m1cy = Math.floor(Math.random() * 500);
       var m2cx = Math.floor(Math.random() * 1000);
             m5cx = Math.floor(Math.random() * 1000);
-     m5cy = Math.floor(Math.random() * 500); 
+     m5cy = Math.floor(Math.random() * 500);
       m6cx = Math.floor(Math.random() * 1000);
      m6cy = Math.floor(Math.random() * 500)
 
     var m2cy = Math.floor(Math.random() * 500);
       var m3cx = Math.floor(Math.random() * 1000);
-    var m3cy = Math.floor(Math.random() * 500); 
+    var m3cy = Math.floor(Math.random() * 500);
      var m4cx = Math.floor(Math.random() * 1000);
     var m4cy = Math.floor(Math.random() * 500);
      window.onload = function () {
 document.getElementById("hp").innerHTML = hp;
 document.getElementById("mhp").innerHTML = mhp;
- wepon()
+
  var name = prompt('what is your name');
  alert(name + ', ower town is under atack by slimes go fite them thair comming');
 
@@ -312,10 +320,10 @@ document.getElementById("mhp").innerHTML = mhp;
     document.getElementById("aaaa").setAttribute("cy", m3cy);
     document.getElementById("aaaaa").setAttribute("cx", m4cx);
     document.getElementById("aaaaa").setAttribute("cy", m4cy);
-        document.getElementById("aaaaaa").setAttribute("cx", m5cx);
-    document.getElementById("aaaaaa").setAttribute("cy", m5cy);
-    document.getElementById("aaaaaaa").setAttribute("cx", m6cx);
-    document.getElementById("aaaaaaa").setAttribute("cy", m6cy);
+    //     document.getElementById("aaaaaa").setAttribute("cx", m5cx);
+    // document.getElementById("aaaaaa").setAttribute("cy", m5cy);
+    // document.getElementById("aaaaaaa").setAttribute("cx", m6cx);
+    // document.getElementById("aaaaaaa").setAttribute("cy", m6cy);
    }
 
 
@@ -367,8 +375,10 @@ var       m3cxy = m3cx + 15
 var     m3cxx = m3cx - 15
 var     m4cxy = m4cx + 15
 var     m4cxx = m4cx - 15
-   function batil() {
-var a2 = Math.floor(Math.random() * 3);
+   function waterbatil() {
+if (manna > 0) {
+
+
   if(cy < m1cyy && cy > m1cyx) {
     if(hp <= 0){
   alert("yu died refresh page");
@@ -381,6 +391,8 @@ var a2 = Math.floor(Math.random() * 3);
     m1s -= as;
     hp -= m1at;
 s -= m1sat;
+hp += wh;
+manna -= 1;
 document.getElementById("hp").innerHTML = hp;
 document.getElementById("mhp").innerHTML = mhp;
  document.getElementById("a").style.fill= "blue";
@@ -405,13 +417,16 @@ document.getElementById("mhp").innerHTML = mhp;
    wepon()
    wepon()
    if (mc == 0) {
-
+     m1sat += 1;
+      m2sat += 1;
+       m3sat += 1;
+       m4sat += 1;
  m1cx = Math.floor(Math.random() * 1000);
      m1cy = Math.floor(Math.random() * 500);
        m2cx = Math.floor(Math.random() * 1000);
      m2cy = Math.floor(Math.random() * 500);
        m3cx = Math.floor(Math.random() * 1000);
-     m3cy = Math.floor(Math.random() * 500); 
+     m3cy = Math.floor(Math.random() * 500);
       m4cx = Math.floor(Math.random() * 1000);
      m4cy = Math.floor(Math.random() * 500);
      m1cyy = m1cy + 15
@@ -484,6 +499,8 @@ document.getElementById("mhp").innerHTML = mhp;
     m2s -= as;
     hp -= m2at;
 s -= m2sat;
+hp += wh;
+manna -= 1;
 document.getElementById("hp").innerHTML = hp;
 document.getElementById("mhp").innerHTML = mhp;
       document.getElementById("a").style.strokeWidth = s;
@@ -514,7 +531,7 @@ document.getElementById("a").style.fill= "blue";
        m2cx = Math.floor(Math.random() * 1000);
      m2cy = Math.floor(Math.random() * 500);
        m3cx = Math.floor(Math.random() * 1000);
-     m3cy = Math.floor(Math.random() * 500); 
+     m3cy = Math.floor(Math.random() * 500);
       m4cx = Math.floor(Math.random() * 1000);
      m4cy = Math.floor(Math.random() * 500);
      document.getElementById("aa").setAttribute("cx", m1cx);
@@ -565,6 +582,7 @@ m1cyy = m1cy + 15
     m1sat += 1;
      m2sat += 1;
       m3sat += 1;
+      m4sat += 1;
     document.getElementById("aaaaa").style.strokeWidth = bm4s;
     document.getElementById("aaaa").style.strokeWidth = bm3s;
     document.getElementById("aaa").style.strokeWidth = bm2s;
@@ -591,6 +609,8 @@ if(hp == 0){
     m3s -= as;
     hp -= m2at;
 s -= m2sat;
+hp += wh;
+manna -= 1;
 document.getElementById("hp").innerHTML = hp;
 document.getElementById("mhp").innerHTML = mhp;
 document.getElementById("a").style.fill= "blue";
@@ -614,13 +634,16 @@ mhp += 15;
 document.getElementById("hp").innerHTML = hp;
 document.getElementById("mhp").innerHTML = mhp;
    if (mc == 0) {
-
+     m1sat += 1;
+      m2sat += 1;
+       m3sat += 1;
+       m4sat += 1;
  m1cx = Math.floor(Math.random() * 1000);
      m1cy = Math.floor(Math.random() * 500);
        m2cx = Math.floor(Math.random() * 1000);
      m2cy = Math.floor(Math.random() * 500);
        m3cx = Math.floor(Math.random() * 1000);
-     m3cy = Math.floor(Math.random() * 500); 
+     m3cy = Math.floor(Math.random() * 500);
       m4cx = Math.floor(Math.random() * 1000);
      m4cy = Math.floor(Math.random() * 500);
      document.getElementById("aa").setAttribute("cx", m1cx);
@@ -700,6 +723,8 @@ if(hp == 0){
     m4s -= as;
     hp -= m3at;
 s -= m3sat;
+hp += wh;
+manna -= 1;
 document.getElementById("hp").innerHTML = hp;
 document.getElementById("mhp").innerHTML = mhp;
 document.getElementById("a").style.fill= "blue";
@@ -723,13 +748,16 @@ document.getElementById("a").style.fill= "blue";
 document.getElementById("mhp").innerHTML = mhp;
    wepon()
    if (mc == 0) {
-
+     m1sat += 1;
+      m2sat += 1;
+       m3sat += 1;
+       m4sat += 1;
  m1cx = Math.floor(Math.random() * 1000);
      m1cy = Math.floor(Math.random() * 500);
        m2cx = Math.floor(Math.random() * 1000);
      m2cy = Math.floor(Math.random() * 500);
        m3cx = Math.floor(Math.random() * 1000);
-     m3cy = Math.floor(Math.random() * 500); 
+     m3cy = Math.floor(Math.random() * 500);
       m4cx = Math.floor(Math.random() * 1000);
      m4cy = Math.floor(Math.random() * 500);
      m1cyy = m1cy + 15
@@ -823,7 +851,7 @@ document.getElementById("a").style.fill= "blue";
        m2cx = Math.floor(Math.random() * 1000);
      m2cy = Math.floor(Math.random() * 500);
        m3cx = Math.floor(Math.random() * 1000);
-     m3cy = Math.floor(Math.random() * 500); 
+     m3cy = Math.floor(Math.random() * 500);
       m4cx = Math.floor(Math.random() * 1000);
      m4cy = Math.floor(Math.random() * 500);
      m1cyy = m1cy + 15
@@ -917,7 +945,7 @@ document.getElementById("a").style.fill= "blue";
        m2cx = Math.floor(Math.random() * 1000);
      m2cy = Math.floor(Math.random() * 500);
        m3cx = Math.floor(Math.random() * 1000);
-     m3cy = Math.floor(Math.random() * 500); 
+     m3cy = Math.floor(Math.random() * 500);
       m4cx = Math.floor(Math.random() * 1000);
      m4cy = Math.floor(Math.random() * 500);
      m1cyy = m1cy + 15
@@ -936,6 +964,10 @@ document.getElementById("a").style.fill= "blue";
      m3cxx = m3cx - 15
      m4cxy = m4cx + 15
      m4cxx = m4cx - 15
+     m1sat += 1;
+     m2sat += 1;
+     m3sat += 1;
+     m4sat += 1;
      document.getElementById("aa").setAttribute("cx", m1cx);
     document.getElementById("aa").setAttribute("cy", m1cy);
        document.getElementById("aaa").setAttribute("cx", m2cx);
@@ -979,8 +1011,644 @@ document.getElementById("a").style.fill= "blue";
   alert("yu died refresh page");
  }
  }
+}
+}
+function firebatil() {
+if(manna > 0)
+if(cy < m1cyy && cy > m1cyx) {
+ if(hp <= 0){
+alert("yu died refresh page");
+document.getElementById("a").style.fill= "blue";
+window.setInterval(function () {
+alert("you died refresh page");
+},7000);
+}
+ m1hp -= atc;
+ m1s -= as;
+ hp -= m1at;
+s -= m1sat;
+m1hp -= fd;
+manna--
+document.getElementById("hp").innerHTML = hp;
+document.getElementById("mhp").innerHTML = mhp;
+document.getElementById("a").style.fill= "blue";
+     setTimeout(function() {
+  document.getElementById("a").style.fill= "red";
+},
+500
+);
+ document.getElementById("a").style.strokeWidth = s;
+  document.getElementById("aa").style.strokeWidth = m1s;
+ if(m1hp <= 0){
+document.getElementById("aa").setAttribute("cx", -100);
+atc + 10;
+as += 1;
+he += 15;
+hes += 1.5;
+mc -= 1;
+mhp += 10
+ms += 1
+document.getElementById("hp").innerHTML = hp;
+document.getElementById("mhp").innerHTML = mhp;
+wepon()
+
+if (mc == 0) {
+  m1sat += 1;
+   m2sat += 1;
+    m3sat += 1;
+    m4sat += 1;
+m1cx = Math.floor(Math.random() * 1000);
+  m1cy = Math.floor(Math.random() * 500);
+    m2cx = Math.floor(Math.random() * 1000);
+  m2cy = Math.floor(Math.random() * 500);
+    m3cx = Math.floor(Math.random() * 1000);
+  m3cy = Math.floor(Math.random() * 500);
+   m4cx = Math.floor(Math.random() * 1000);
+  m4cy = Math.floor(Math.random() * 500);
+  m1cyy = m1cy + 15
+  m1cyx = m1cy - 15
+   m2cyy = m2cy + 15
+  m2cyx = m2cy - 15
+    m3cyy = m3cy + 15
+  m3cyx = m3cy - 15
+  m4cyy = m4cy + 15
+  m4cyx = m4cy - 15
+   m1cxy = m1cx + 15
+  m1cxx = m1cx - 15
+   m2cxy = m2cx + 15
+  m2cxx = m2cx - 15
+    m3cxy = m3cx + 15
+  m3cxx = m3cx - 15
+  m4cxy = m4cx + 15
+  m4cxx = m4cx - 15
+  document.getElementById("aa").setAttribute("cx", m1cx);
+ document.getElementById("aa").setAttribute("cy", m1cy);
+    document.getElementById("aaa").setAttribute("cx", m2cx);
+ document.getElementById("aaa").setAttribute("cy", m2cy);
+    document.getElementById("aaaa").setAttribute("cx", m3cx);
+ document.getElementById("aaaa").setAttribute("cy", m3cy);
+ document.getElementById("aaaaa").setAttribute("cx", m4cx);
+ document.getElementById("aaaaa").setAttribute("cy", m4cy);
+ bm1hp += 200;
+ bm2hp += 200;
+ bm3hp += 200;
+ bm4hp += 200;
+ m1hp = bm1hp;
+ m2hp = bm2hp;
+ m3hp = bm3hp;
+ m4hp = bm4hp;
+ mc += 4;
+ m1at += 10;
+ m2at += 10;
+ m3at += 10;
+ bm1s += 20;
+ bm2s += 20;
+ bm3s += 20;
+ bm4s += 20;
+ m1s = bm1s;
+ m2s = bm2s;
+ m3s = bm3s;
+ m4s = bm4s;
+ wa += 1;
+ document.getElementById("aaaaa").style.strokeWidth = bm4s;
+ document.getElementById("aaaa").style.strokeWidth = bm3s;
+ document.getElementById("aaa").style.strokeWidth = bm2s;
+ document.getElementById("aa").style.strokeWidth = bm1s;
+document.getElementById("aa").style.stroke = "yellow";
+ document.getElementById("aaaa").style.stroke = "yellow";
+ document.getElementById("aaa").style.stroke = "yellow";
+ document.getElementById("aaaaa").style.stroke = "red";
+}
+}else if(hp <= 0){
+alert("yu died refresh page");
+}
+
+ }else if(cy < m2cyy && cy > m2cyx) {
+if(hp == 0){
+ document.getElementById("a").style.fill= "blue";
+ window.setInterval(function () {
+alert("you died refresh page");
+
+},7000);
+}
+ m2hp -= atc;
+ m2s -= as;
+ hp -= m2at;
+s -= m2sat;
+m1hp -= fd;
+manna--
+document.getElementById("hp").innerHTML = hp;
+document.getElementById("mhp").innerHTML = mhp;
+   document.getElementById("a").style.strokeWidth = s;
+  document.getElementById("aaa").style.strokeWidth = m2s;
+ if(m2hp <= 0){
+document.getElementById("aaa").setAttribute("cx", -100);
+atc + 15;
+as += 1.5;
+he += 20;
+hes += 2;
+mc -= 1;
+mhp += 15;
+ms += 1.5;
+document.getElementById("hp").innerHTML = hp;
+document.getElementById("mhp").innerHTML = mhp;
+wepon()
+document.getElementById("a").style.fill= "blue";
+     setTimeout(function() {
+  document.getElementById("a").style.fill= "red";
+},
+500
+);
+if (mc == 0) {
+
+
+m1cx = Math.floor(Math.random() * 1000);
+  m1cy = Math.floor(Math.random() * 500);
+    m2cx = Math.floor(Math.random() * 1000);
+  m2cy = Math.floor(Math.random() * 500);
+    m3cx = Math.floor(Math.random() * 1000);
+  m3cy = Math.floor(Math.random() * 500);
+   m4cx = Math.floor(Math.random() * 1000);
+  m4cy = Math.floor(Math.random() * 500);
+  document.getElementById("aa").setAttribute("cx", m1cx);
+ document.getElementById("aa").setAttribute("cy", m1cy);
+    document.getElementById("aaa").setAttribute("cx", m2cx);
+ document.getElementById("aaa").setAttribute("cy", m2cy);
+    document.getElementById("aaaa").setAttribute("cx", m3cx);
+ document.getElementById("aaaa").setAttribute("cy", m3cy);
+ document.getElementById("aaaaa").setAttribute("cx", m4cx);
+ document.getElementById("aaaaa").setAttribute("cy", m4cy);
+m1cyy = m1cy + 15
+  m1cyx = m1cy - 15
+   m2cyy = m2cy + 15
+  m2cyx = m2cy - 15
+    m3cyy = m3cy + 15
+  m3cyx = m3cy - 15
+  m4cyy = m4cy + 15
+  m4cyx = m4cy - 15
+   m1cxy = m1cx + 15
+  m1cxx = m1cx - 15
+   m2cxy = m2cx + 15
+  m2cxx = m2cx - 15
+    m3cxy = m3cx + 15
+  m3cxx = m3cx - 15
+  m4cxy = m4cx + 15
+  m4cxx = m4cx - 15
+ bm1hp += 200;
+ bm2hp += 200;
+ bm3hp += 200;
+ bm4hp += 200;
+ m1hp = bm1hp;
+ m2hp = bm2hp;
+ m3hp = bm3hp;
+ m4hp = bm4hp;
+ mc += 4;
+ m1at += 10;
+ m2at += 10;
+ m3at += 10;
+ bm1s += 20;
+ bm2s += 20;
+ bm3s += 20;
+ bm4s += 20;
+ m1s = bm1s;
+ m2s = bm2s;
+ m3s = bm3s;
+ m4s = bm4s;
+ wa += 1;
+ m1sat += 1;
+  m2sat += 1;
+   m3sat += 1;
+   m4sat += 1;
+ document.getElementById("aaaaa").style.strokeWidth = bm4s;
+ document.getElementById("aaaa").style.strokeWidth = bm3s;
+ document.getElementById("aaa").style.strokeWidth = bm2s;
+ document.getElementById("aa").style.strokeWidth = bm1s;
+
+document.getElementById("aa").style.stroke = "yellow";
+ document.getElementById("aaaa").style.stroke = "yellow";
+ document.getElementById("aaa").style.stroke = "yellow";
+ document.getElementById("aaaaa").style.stroke = "orange";
+
 
 }
+}else if(hp <= 0){
+alert("yu died refresh page");
+}
+
+}else if(cy < m3cyy && cy > m3cyx) {
+if(hp == 0){
+ window.setInterval(function () {
+alert("you died refresh page");
+},7000);
+}
+ m3hp -= atc;
+ m3s -= as;
+ hp -= m2at;
+s -= m2sat;
+m1hp -= fd;
+manna--
+document.getElementById("hp").innerHTML = hp;
+document.getElementById("mhp").innerHTML = mhp;
+document.getElementById("a").style.fill= "blue";
+     setTimeout(function() {
+  document.getElementById("a").style.fill= "red";
+},
+500
+);
+ document.getElementById("a").style.strokeWidth = s;
+  document.getElementById("aaaa").style.strokeWidth = m3s;
+ if(m3hp <= 0){
+document.getElementById("aaaa").setAttribute("cx", -100);
+atc + 15;
+as += 1.5;
+he += 20;
+hes += 2;
+mc -= 1;
+wepon()
+ms += 1.5;
+mhp += 15;
+document.getElementById("hp").innerHTML = hp;
+document.getElementById("mhp").innerHTML = mhp;
+if (mc == 0) {
+  m1sat += 1;
+   m2sat += 1;
+    m3sat += 1;
+    m4sat += 1;
+m1cx = Math.floor(Math.random() * 1000);
+  m1cy = Math.floor(Math.random() * 500);
+    m2cx = Math.floor(Math.random() * 1000);
+  m2cy = Math.floor(Math.random() * 500);
+    m3cx = Math.floor(Math.random() * 1000);
+  m3cy = Math.floor(Math.random() * 500);
+   m4cx = Math.floor(Math.random() * 1000);
+  m4cy = Math.floor(Math.random() * 500);
+  document.getElementById("aa").setAttribute("cx", m1cx);
+ document.getElementById("aa").setAttribute("cy", m1cy);
+    document.getElementById("aaa").setAttribute("cx", m2cx);
+ document.getElementById("aaa").setAttribute("cy", m2cy);
+    document.getElementById("aaaa").setAttribute("cx", m3cx);
+ document.getElementById("aaaa").setAttribute("cy", m3cy);
+ document.getElementById("aaaaa").setAttribute("cx", m4cx);
+ document.getElementById("aaaaa").setAttribute("cy", m4cy);
+m1cyy = m1cy + 15
+  m1cyx = m1cy - 15
+   m2cyy = m2cy + 15
+  m2cyx = m2cy - 15
+    m3cyy = m3cy + 15
+  m3cyx = m3cy - 15
+  m4cyy = m4cy + 15
+  m4cyx = m4cy - 15
+   m1cxy = m1cx + 15
+  m1cxx = m1cx - 15
+   m2cxy = m2cx + 15
+  m2cxx = m2cx - 15
+    m3cxy = m3cx + 15
+  m3cxx = m3cx - 15
+  m4cxy = m4cx + 15
+  m4cxx = m4cx - 15
+ bm1hp += 200;
+ bm2hp += 200;
+ bm3hp += 200;
+ bm4hp += 200;
+ m1hp = bm1hp;
+ m2hp = bm2hp;
+ m3hp = bm3hp;
+ m4hp = bm4hp;
+ mc += 4;
+ m1at += 10;
+ m2at += 10;
+ m3at += 10;
+ bm1s += 20;
+ bm2s += 20;
+ bm3s += 20;
+ bm4s += 20;
+ m1s = bm1s;
+ m2s = bm2s;
+ m3s = bm3s;
+ m4s = bm4s;
+ wa += 1;
+ m1cyy = m1cy + 10
+ m1cyx = m1cy - 10
+ m2cyy = m2cy + 10
+ m2cyx = m2cy - 10
+ m3cyy = m3cy + 10
+ m3cyx = m3cy - 10
+ m4cyy = m4cy + 10
+ m4cyx = m4cy - 10
+ document.getElementById("aaaaa").style.strokeWidth = bm4s;
+ document.getElementById("aaaa").style.strokeWidth = bm3s;
+ document.getElementById("aaa").style.strokeWidth = bm2s;
+ document.getElementById("aa").style.strokeWidth = bm1s;
+
+document.getElementById("aa").style.stroke = "yellow";
+ document.getElementById("aaaa").style.stroke = "yellow";
+ document.getElementById("aaa").style.stroke = "yellow";
+ document.getElementById("aaaaa").style.stroke = "red";
+
+}
+}else if(hp <= 0){
+alert("yu died refresh page");
+}
+}else if(cy < m4cyy && cy > m4cyx) {
+if(hp == 0){
+ window.setInterval(function () {
+alert("you died refresh page");
+},7000);
+}
+ m4hp -= atc;
+ m4s -= as;
+ hp -= m3at;
+s -= m3sat;
+m1hp -= fd;
+manna--
+document.getElementById("hp").innerHTML = hp;
+document.getElementById("mhp").innerHTML = mhp;
+document.getElementById("a").style.fill= "blue";
+     setTimeout(function() {
+  document.getElementById("a").style.fill= "red";
+},
+500
+);
+ document.getElementById("a").style.strokeWidth = s;
+  document.getElementById("aaaaa").style.strokeWidth = m4s;
+ if(m4hp <= 0){
+document.getElementById("aaaaa").setAttribute("cx", -100);
+atc + 30;
+as += 3;
+he += 30;
+hes += 2;
+mc -= 1;
+ms += 3;
+mhp += 30;
+document.getElementById("hp").innerHTML = hp;
+document.getElementById("mhp").innerHTML = mhp;
+wepon()
+if (mc == 0) {
+  m1sat += 1;
+   m2sat += 1;
+    m3sat += 1;
+    m4sat += 1;
+m1cx = Math.floor(Math.random() * 1000);
+  m1cy = Math.floor(Math.random() * 500);
+    m2cx = Math.floor(Math.random() * 1000);
+  m2cy = Math.floor(Math.random() * 500);
+    m3cx = Math.floor(Math.random() * 1000);
+  m3cy = Math.floor(Math.random() * 500);
+   m4cx = Math.floor(Math.random() * 1000);
+  m4cy = Math.floor(Math.random() * 500);
+  m1cyy = m1cy + 15
+  m1cyx = m1cy - 15
+   m2cyy = m2cy + 15
+  m2cyx = m2cy - 15
+    m3cyy = m3cy + 15
+  m3cyx = m3cy - 15
+  m4cyy = m4cy + 15
+  m4cyx = m4cy - 15
+   m1cxy = m1cx + 15
+  m1cxx = m1cx - 15
+   m2cxy = m2cx + 15
+  m2cxx = m2cx - 15
+    m3cxy = m3cx + 15
+  m3cxx = m3cx - 15
+  m4cxy = m4cx + 15
+  m4cxx = m4cx - 15
+  document.getElementById("aa").setAttribute("cx", m1cx);
+ document.getElementById("aa").setAttribute("cy", m1cy);
+    document.getElementById("aaa").setAttribute("cx", m2cx);
+ document.getElementById("aaa").setAttribute("cy", m2cy);
+    document.getElementById("aaaa").setAttribute("cx", m3cx);
+ document.getElementById("aaaa").setAttribute("cy", m3cy);
+ document.getElementById("aaaaa").setAttribute("cx", m4cx);
+ document.getElementById("aaaaa").setAttribute("cy", m4cy);
+ bm1hp += 200;
+ bm2hp += 200;
+ bm3hp += 200;
+ bm4hp += 200;
+ m1hp = bm1hp;
+ m2hp = bm2hp;
+ m3hp = bm3hp;
+ m4hp = bm4hp;
+ mc += 4;
+ m1at += 10;
+ m2at += 10;
+ m3at += 10;
+ bm1s += 20;
+ bm2s += 20;
+ bm3s += 20;
+ bm4s += 20;
+ m1s = bm1s;
+ m2s = bm2s;
+ m3s = bm3s;
+ m4s = bm4s;
+ wa += 1;
+ document.getElementById("aaaaa").style.strokeWidth = bm4s;
+ document.getElementById("aaaa").style.strokeWidth = bm3s;
+ document.getElementById("aaa").style.strokeWidth = bm2s;
+ document.getElementById("aa").style.strokeWidth = bm1s;
+document.getElementById("aa").style.stroke = "yellow";
+ document.getElementById("aaaa").style.stroke = "yellow";
+ document.getElementById("aaa").style.stroke = "yellow";
+ document.getElementById("aaaaa").style.stroke = "red";
+
+}
+}else if(hp <= 0){
+alert("yu died refresh page");
+}
+}else if(cy < m5cyy && cy > m5cyx) {
+if(hp == 0){
+ window.setInterval(function () {
+alert("you died refresh page");
+},7000);
+}
+ m5hp -= atc;
+ m5s -= as;
+ hp -= m4at;
+s -= m4sat;
+document.getElementById("a").style.fill= "blue";
+     setTimeout(function() {
+  document.getElementById("a").style.fill= "red";
+},
+500
+);
+ document.getElementById("a").style.strokeWidth = s;
+  document.getElementById("aaaaaa").style.strokeWidth = m5s;
+ if(m4hp <= 0){
+document.getElementById("aaaaaa").setAttribute("cx", -100);
+atc + 40;
+as += 4;
+he += 30;
+hes += 3;
+mc -= 1;
+wepon()
+if (mc == 0) {
+
+m1cx = Math.floor(Math.random() * 1000);
+  m1cy = Math.floor(Math.random() * 500);
+    m2cx = Math.floor(Math.random() * 1000);
+  m2cy = Math.floor(Math.random() * 500);
+    m3cx = Math.floor(Math.random() * 1000);
+  m3cy = Math.floor(Math.random() * 500);
+   m4cx = Math.floor(Math.random() * 1000);
+  m4cy = Math.floor(Math.random() * 500);
+  m1cyy = m1cy + 15
+  m1cyx = m1cy - 15
+   m2cyy = m2cy + 15
+  m2cyx = m2cy - 15
+    m3cyy = m3cy + 15
+  m3cyx = m3cy - 15
+  m4cyy = m4cy + 15
+  m4cyx = m4cy - 15
+   m1cxy = m1cx + 15
+  m1cxx = m1cx - 15
+   m2cxy = m2cx + 15
+  m2cxx = m2cx - 15
+    m3cxy = m3cx + 15
+  m3cxx = m3cx - 15
+  m4cxy = m4cx + 15
+  m4cxx = m4cx - 15
+  document.getElementById("aa").setAttribute("cx", m1cx);
+ document.getElementById("aa").setAttribute("cy", m1cy);
+    document.getElementById("aaa").setAttribute("cx", m2cx);
+ document.getElementById("aaa").setAttribute("cy", m2cy);
+    document.getElementById("aaaa").setAttribute("cx", m3cx);
+ document.getElementById("aaaa").setAttribute("cy", m3cy);
+ document.getElementById("aaaaa").setAttribute("cx", m4cx);
+ document.getElementById("aaaaa").setAttribute("cy", m4cy);
+ bm1hp += 200;
+ bm2hp += 200;
+ bm3hp += 200;
+ bm4hp += 200;
+ m1hp = bm1hp;
+ m2hp = bm2hp;
+ m3hp = bm3hp;
+ m4hp = bm4hp;
+ mc += 4;
+ m1at += 10;
+ m2at += 10;
+ m3at += 10;
+ bm1s += 20;
+ bm2s += 20;
+ bm3s += 20;
+ bm4s += 20;
+ m1s = bm1s;
+ m2s = bm2s;
+ m3s = bm3s;
+ m4s = bm4s;
+ wa += 1;
+ document.getElementById("aaaaa").style.strokeWidth = bm4s;
+ document.getElementById("aaaa").style.strokeWidth = bm3s;
+ document.getElementById("aaa").style.strokeWidth = bm2s;
+ document.getElementById("aa").style.strokeWidth = bm1s;
+document.getElementById("aa").style.stroke = "yellow";
+ document.getElementById("aaaa").style.stroke = "yellow";
+ document.getElementById("aaa").style.stroke = "yellow";
+ document.getElementById("aaaaa").style.stroke = "red";
+
+}
+}else if(hp <= 0){
+alert("yu died refresh page");
+}
+}else if(cy < m6cyy && cy > m6cyx) {
+if(hp == 0){
+ window.setInterval(function () {
+alert("you died refresh page");
+},7000);
+}
+ m6hp -= atc;
+ m6s -= as;
+ hp -= m6at;
+s -= m6sat;
+document.getElementById("a").style.fill= "blue";
+     setTimeout(function() {
+  document.getElementById("a").style.fill= "red";
+},
+500
+);
+ document.getElementById("a").style.strokeWidth = s;
+  document.getElementById("aaaaaa").style.strokeWidth = m5s;
+ if(m4hp <= 0){
+document.getElementById("aaaaaa").setAttribute("cx", -100);
+atc + 40;
+as += 4;
+he += 30;
+hes += 3;
+mc -= 1;
+wepon()
+if (mc == 0) {
+
+m1cx = Math.floor(Math.random() * 1000);
+  m1cy = Math.floor(Math.random() * 500);
+    m2cx = Math.floor(Math.random() * 1000);
+  m2cy = Math.floor(Math.random() * 500);
+    m3cx = Math.floor(Math.random() * 1000);
+  m3cy = Math.floor(Math.random() * 500);
+   m4cx = Math.floor(Math.random() * 1000);
+  m4cy = Math.floor(Math.random() * 500);
+  m1cyy = m1cy + 15
+  m1cyx = m1cy - 15
+   m2cyy = m2cy + 15
+  m2cyx = m2cy - 15
+    m3cyy = m3cy + 15
+  m3cyx = m3cy - 15
+  m4cyy = m4cy + 15
+  m4cyx = m4cy - 15
+   m1cxy = m1cx + 15
+  m1cxx = m1cx - 15
+   m2cxy = m2cx + 15
+  m2cxx = m2cx - 15
+    m3cxy = m3cx + 15
+  m3cxx = m3cx - 15
+  m4cxy = m4cx + 15
+  m4cxx = m4cx - 15
+  m1sat += 1;
+  m2sat += 1;
+  m3sat += 1;
+  m4sat += 1;
+  document.getElementById("aa").setAttribute("cx", m1cx);
+ document.getElementById("aa").setAttribute("cy", m1cy);
+    document.getElementById("aaa").setAttribute("cx", m2cx);
+ document.getElementById("aaa").setAttribute("cy", m2cy);
+    document.getElementById("aaaa").setAttribute("cx", m3cx);
+ document.getElementById("aaaa").setAttribute("cy", m3cy);
+ document.getElementById("aaaaa").setAttribute("cx", m4cx);
+ document.getElementById("aaaaa").setAttribute("cy", m4cy);
+ bm1hp += 200;
+ bm2hp += 200;
+ bm3hp += 200;
+ bm4hp += 200;
+ m1hp = bm1hp;
+ m2hp = bm2hp;
+ m3hp = bm3hp;
+ m4hp = bm4hp;
+ mc += 4;
+ m1at += 10;
+ m2at += 10;
+ m3at += 10;
+ bm1s += 20;
+ bm2s += 20;
+ bm3s += 20;
+ bm4s += 20;
+ m1s = bm1s;
+ m2s = bm2s;
+ m3s = bm3s;
+ m4s = bm4s;
+ wa += 1;
+ document.getElementById("aaaaa").style.strokeWidth = bm4s;
+ document.getElementById("aaaa").style.strokeWidth = bm3s;
+ document.getElementById("aaa").style.strokeWidth = bm2s;
+ document.getElementById("aa").style.strokeWidth = bm1s;
+document.getElementById("aa").style.stroke = "yellow";
+ document.getElementById("aaaa").style.stroke = "yellow";
+ document.getElementById("aaa").style.stroke = "yellow";
+ document.getElementById("aaaaa").style.stroke = "red";
+
+}
+}else if(hp <= 0){
+alert("yu died refresh page");
+}
+}
+}
+
    function ele() {
 if(hp <= mhp) {
   if(s < ms){
@@ -991,7 +1659,7 @@ document.getElementById("mhp").innerHTML = mhp;
      hp += he;
      hp -= m1at
      s += hes;
-     s -= m1sat
+     s -= m1sat;
       document.getElementById("a").style.strokeWidth = s;
        document.getElementById("a").style.fill= "yellow";
         setTimeout(function() {
@@ -1064,6 +1732,9 @@ window.addEventListener('keydown', function(e) {
 window.addEventListener('keyup', function(e) {
    c();
 });
+setInterval(function() {
+  manna += 1;
+},5000)
  </script>
 
 </body>
